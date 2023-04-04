@@ -1,5 +1,15 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+struct elector {
+    char *name;
+    long cin_num;
+    int choice;
+    struct elector *next;
+};
+
+typedef struct elector *T_Elector;
 /*
 Authors: Abid Gurbanov , Ziraddin Ismayilov
 */
@@ -9,14 +19,7 @@ void freelist(T_Elector head) ;
 int countLR(T_Elector head) ;
 T_Elector mergelists(T_Elector, T_Elector);
 void merge(T_Elector *head, T_Elector left, T_Elector right) ;
-struct elector {
-    char *name;
-    long cin_num;
-    int choice;
-    struct elector *next;
-};
 
-typedef struct elector *T_Elector;
 int main()
 {
 
