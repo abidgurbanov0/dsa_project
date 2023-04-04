@@ -23,6 +23,15 @@ int main()
 
 
 }
+//Ziraddin ------------***********************************
+
+
+
+
+
+
+
+//Abid -------------***************************************
 void decomposelist(T_Elector head, T_Elector *left, T_Elector *right, T_Elector *white) {
     *left = NULL;
     *right = NULL;
