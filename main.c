@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+//d
 struct elector {
     char *name;
     long cin_num;
