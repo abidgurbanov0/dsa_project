@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct elector {
-    char *name;
-    long cin_num;
-    int choice;
-    struct elector *next;
-};
+typedef struct elector{
+  char name[100];
+  long cin_num;
+  int choice;
+  struct elector* next;
+} elector;
 
-typedef struct elector *T_Elector;
+typedef elector *T_Elector;
 /*
 Authors: Abid Gurbanov , Ziraddin Ismayilov
 */
@@ -27,9 +27,58 @@ int main()
 
 }
 //Ziraddin ------------***********************************
-
-
-
+T_Elector creationelector(void){
+    elector *root = (elector*)malloc(sizeof(elector));
+    return root;
+}
+void displaylist(T_Elector root){
+    elector* cursor = root;
+    while(cursor->next != NULL){
+        printf("%s\n", cursor->name);
+    }
+}
+void addelector(T_Elector root, char name[], long id, int choice){
+    elector *new_elector = (elector*)malloc(sizeof(elector));
+    strcpy(new_elector->name, name);
+    new_elector->cin_num = id;
+    new_elector->choice = choice;
+    new_elector->next = NULL;
+    if (root == NULL) {
+        root = new_elector;
+    } 
+    else {
+        T_Elector current = root;
+        while (current->next != NULL && strcmp(name, current->next->name) > 0) {
+            current = current->next;
+        }
+        new_elector->next = current->next;
+    }
+}
+int countelector(T_Elector root){
+    int count = 0;
+    elector* cursor = root;
+    while(cursor->next != NULL){
+        count++;
+    }
+    return count;
+}
+int findelector(T_Elector root, long id){
+    elector* cursor = root;
+    while(cursor->next != NULL){
+        if(cursor->cin_num == id){
+            return 1;
+        }
+    }
+    return 0;
+}
+void deletelector(T_Elector root, long id){
+    elector* cursor = root;
+    while(cursor->next->next != NULL){
+        if(cursor->next->cin_num == id){
+            cursor = cursor->next->next;
+        }
+    }
+}
 
 
 
