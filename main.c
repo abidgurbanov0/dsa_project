@@ -1,6 +1,10 @@
 #include<stdio.h>
-
-
+void decomposelist(T_Elector head, T_Elector *left, T_Elector *right, T_Elector *white);
+void merge_sort(T_Elector *head) ;
+void freelist(T_Elector head) ;
+int countLR(T_Elector head) ;
+T_Elector mergelists(T_Elector, T_Elector);
+void merge(T_Elector *head, T_Elector left, T_Elector right) ;
 struct elector {
     char *name;
     long cin_num;
@@ -9,18 +13,17 @@ struct elector {
 };
 
 typedef struct elector *T_Elector;
-
-
 int main()
 {
 
-}
 
+
+}
 void decomposelist(T_Elector head, T_Elector *left, T_Elector *right, T_Elector *white) {
     *left = NULL;
     *right = NULL;
     *white = NULL;
-    
+     
     T_Elector curr = head;
     while (curr != NULL) {
         if (curr->choice == 1 || curr->choice == 3) {
@@ -86,5 +89,56 @@ void freelist(T_Elector head) {
     }
 }
 
+int countLR(T_Elector head) {
+    int count = 0;
+    while (head != NULL) {
+        if (head->choice == 1 || head->choice == 3) {
+            count++;
+        }
+        head = head->next;
+    }
+    return count;
+}
+T_Elector mergelists(T_Elector left, T_Elector right) {
+    T_Elector merged_list = NULL;
+    T_Elector curr = NULL;
 
-//test github
+    while (left != NULL && right != NULL) {
+        if (left->cin_num <= right->cin_num) {
+            if (merged_list == NULL) {
+                merged_list = left;
+                curr = merged_list;
+            } else {
+                curr->next = left;
+                curr = curr->next;
+            }
+            left = left->next;
+        } else {
+            if (merged_list == NULL) {
+                merged_list = right;
+                curr = merged_list;
+            } else {
+                curr->next = right;
+                curr = curr->next;
+            }
+            right = right->next;
+        }
+    }
+
+    if (left == NULL) {
+        if (merged_list == NULL) {
+            merged_list = right;
+        } else {
+            curr->next = right;
+        }
+    } else {
+        if (merged_list == NULL) {
+            merged_list = left;
+        } else {
+            curr->next = left;
+        }
+    }
+
+    return merged_list;
+}
+
