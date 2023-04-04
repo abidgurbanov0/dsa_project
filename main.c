@@ -1,4 +1,8 @@
 #include<stdio.h>
+
+/*
+Authors: Abid Gurbanov , Ziraddin Ismayilov
+*/
 void decomposelist(T_Elector head, T_Elector *left, T_Elector *right, T_Elector *white);
 void merge_sort(T_Elector *head) ;
 void freelist(T_Elector head) ;
